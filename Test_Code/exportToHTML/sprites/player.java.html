@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>player.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+player.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">sprites</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">main</span><span class="s2">.</span><span class="s1">GamePanel</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">main</span><span class="s2">.</span><span class="s1">Keys</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">imageio</span><span class="s2">.</span><span class="s1">ImageIO</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">BufferedImage</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">player </span><span class="s0">extends </span><span class="s1">entities</span><span class="s2">{</span>
+    <span class="s1">GamePanel gp</span><span class="s2">;</span>
+    <span class="s1">Keys key</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">player</span><span class="s2">(</span><span class="s1">GamePanel gp</span><span class="s2">,</span><span class="s1">Keys key</span><span class="s2">){</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">gp </span><span class="s2">= </span><span class="s1">gp</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">. </span><span class="s1">key </span><span class="s2">= </span><span class="s1">key</span><span class="s2">;</span>
+        <span class="s1">defaultPlayer</span><span class="s2">(</span><span class="s3">100</span><span class="s2">,</span><span class="s3">100</span><span class="s2">,</span><span class="s3">4</span><span class="s2">);</span>
+        <span class="s1">getPlayerVisulas</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">defaultPlayer</span><span class="s2">(</span><span class="s0">int </span><span class="s1">x</span><span class="s2">,</span><span class="s0">int </span><span class="s1">y</span><span class="s2">,</span><span class="s0">int </span><span class="s1">Speed</span><span class="s2">){</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">x </span><span class="s2">=</span><span class="s1">x</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">y </span><span class="s2">=</span><span class="s1">y</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">Speed </span><span class="s2">= </span><span class="s1">Speed</span><span class="s2">;</span>
+        <span class="s1">direction </span><span class="s2">= </span><span class="s4">&quot;down&quot;</span><span class="s2">;</span>
+    <span class="s2">}</span>
+    <span class="s0">public void </span><span class="s1">getPlayerVisulas</span><span class="s2">(){</span>
+        <span class="s0">try</span><span class="s2">{</span>
+            <span class="s1">up1 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/up_1.png&quot;</span><span class="s2">));</span>
+            <span class="s1">up2 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/up_2.png&quot;</span><span class="s2">));</span>
+            <span class="s1">up3 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/up_1.png&quot;</span><span class="s2">));</span>
+            <span class="s1">up4 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/up_2.png&quot;</span><span class="s2">));</span>
+            <span class="s1">left1 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/left_1.png&quot;</span><span class="s2">));</span>
+            <span class="s1">left2 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/left_2.png&quot;</span><span class="s2">));</span>
+            <span class="s1">left3 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/left_3.png&quot;</span><span class="s2">));</span>
+            <span class="s1">left4 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/left_4.png&quot;</span><span class="s2">));</span>
+            <span class="s1">right1 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/right_1.png&quot;</span><span class="s2">));</span>
+            <span class="s1">right2 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/right_2.png&quot;</span><span class="s2">));</span>
+            <span class="s1">right3 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/right_3.png&quot;</span><span class="s2">));</span>
+            <span class="s1">right4 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/right_4.png&quot;</span><span class="s2">));</span>
+            <span class="s1">down1 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/down_1.png&quot;</span><span class="s2">));</span>
+            <span class="s1">down2 </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/down_2.png&quot;</span><span class="s2">));</span>
+            <span class="s1">dft </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">getClass</span><span class="s2">().</span><span class="s1">getResourceAsStream</span><span class="s2">(</span><span class="s4">&quot;/player/dft.png&quot;</span><span class="s2">));</span>
+        <span class="s2">}</span><span class="s0">catch</span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">){</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+    <span class="s0">public void </span><span class="s1">update</span><span class="s2">(){</span>
+        <span class="s0">if</span><span class="s2">(</span><span class="s1">key</span><span class="s2">.</span><span class="s1">up</span><span class="s2">||</span><span class="s1">key</span><span class="s2">.</span><span class="s1">left</span><span class="s2">||</span><span class="s1">key</span><span class="s2">.</span><span class="s1">right</span><span class="s2">||</span><span class="s1">key</span><span class="s2">.</span><span class="s1">down</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">key</span><span class="s2">.</span><span class="s1">up</span><span class="s2">) {</span>
+                <span class="s1">direction </span><span class="s2">= </span><span class="s4">&quot;up&quot;</span><span class="s2">;</span>
+                <span class="s1">y </span><span class="s2">-= </span><span class="s1">Speed</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">key</span><span class="s2">.</span><span class="s1">down</span><span class="s2">) {</span>
+                <span class="s1">direction </span><span class="s2">= </span><span class="s4">&quot;down&quot;</span><span class="s2">;</span>
+                <span class="s1">y </span><span class="s2">+= </span><span class="s1">Speed</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">key</span><span class="s2">.</span><span class="s1">left</span><span class="s2">) {</span>
+                <span class="s1">direction </span><span class="s2">= </span><span class="s4">&quot;left&quot;</span><span class="s2">;</span>
+                <span class="s1">x </span><span class="s2">-= </span><span class="s1">Speed</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">key</span><span class="s2">.</span><span class="s1">right</span><span class="s2">) {</span>
+                <span class="s1">direction </span><span class="s2">= </span><span class="s4">&quot;right&quot;</span><span class="s2">;</span>
+                <span class="s1">x </span><span class="s2">+= </span><span class="s1">Speed</span><span class="s2">;</span>
+            <span class="s2">}</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">x </span><span class="s2">&lt;= </span><span class="s3">0</span><span class="s2">) {</span>
+                <span class="s1">x </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+            <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">x </span><span class="s2">&gt;= (</span><span class="s1">gp</span><span class="s2">.</span><span class="s1">screenWidth </span><span class="s2">- </span><span class="s1">gp</span><span class="s2">.</span><span class="s1">tileSize</span><span class="s2">)) {</span>
+                <span class="s1">x </span><span class="s2">= (</span><span class="s1">gp</span><span class="s2">.</span><span class="s1">screenWidth </span><span class="s2">- </span><span class="s1">gp</span><span class="s2">.</span><span class="s1">tileSize</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">y </span><span class="s2">&lt;= </span><span class="s3">0</span><span class="s2">) {</span>
+                <span class="s1">y </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+            <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">y </span><span class="s2">&gt;= (</span><span class="s1">gp</span><span class="s2">.</span><span class="s1">screenHeight </span><span class="s2">- </span><span class="s1">gp</span><span class="s2">.</span><span class="s1">tileSize</span><span class="s2">)) {</span>
+                <span class="s1">y </span><span class="s2">= (</span><span class="s1">gp</span><span class="s2">.</span><span class="s1">screenHeight </span><span class="s2">- </span><span class="s1">gp</span><span class="s2">.</span><span class="s1">tileSize</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s1">spriteCounter</span><span class="s2">++;</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">spriteCounter </span><span class="s2">&gt; </span><span class="s3">10</span><span class="s2">) {</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">spriteNum </span><span class="s2">&lt; </span><span class="s3">4</span><span class="s2">) {</span>
+                    <span class="s1">spriteNum</span><span class="s2">++;</span>
+                <span class="s2">} </span><span class="s0">else if </span><span class="s2">(</span><span class="s1">spriteNum </span><span class="s2">== </span><span class="s3">4</span><span class="s2">) {</span>
+                    <span class="s1">spriteNum </span><span class="s2">= </span><span class="s3">1</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s1">spriteCounter </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span><span class="s0">else</span><span class="s2">{</span>
+            <span class="s1">direction </span><span class="s2">= </span><span class="s4">&quot;default&quot;</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+    <span class="s0">public void </span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">Graphics g2</span><span class="s2">){</span>
+
+        <span class="s1">BufferedImage img </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+        <span class="s1">BufferedImage testImg </span><span class="s2">= </span><span class="s1">up1</span><span class="s2">;</span>
+
+        <span class="s0">switch </span><span class="s2">(</span><span class="s1">direction</span><span class="s2">){</span>
+            <span class="s0">case </span><span class="s4">&quot;up&quot;</span><span class="s2">:</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">1</span><span class="s2">) {</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">up1</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">2</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">up2</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">3</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">up3</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">4</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">up4</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s4">&quot;down&quot;</span><span class="s2">:</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">1</span><span class="s2">) {</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">down1</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">2</span><span class="s2">) {</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">down2</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s4">&quot;left&quot;</span><span class="s2">:</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">1</span><span class="s2">) {</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">left1</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">2</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">left2</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">3</span><span class="s2">) {</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">left3</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">4</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">left4</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s4">&quot;right&quot;</span><span class="s2">:</span>
+                <span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">1</span><span class="s2">) {</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">right1</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">2</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">right2</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">3</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">right3</span><span class="s2">;</span>
+                <span class="s2">}</span><span class="s0">if</span><span class="s2">(</span><span class="s1">spriteNum</span><span class="s2">==</span><span class="s3">4</span><span class="s2">){</span>
+                    <span class="s1">img </span><span class="s2">= </span><span class="s1">right4</span><span class="s2">;</span>
+                <span class="s2">}</span>
+                <span class="s0">break</span><span class="s2">;</span>
+            <span class="s0">case </span><span class="s4">&quot;default&quot;</span><span class="s2">:</span>
+                <span class="s1">img </span><span class="s2">=</span><span class="s1">dft</span><span class="s2">;</span>
+                <span class="s0">break</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s1">g2</span><span class="s2">.</span><span class="s1">drawImage</span><span class="s2">(</span><span class="s1">img</span><span class="s2">,</span><span class="s1">x</span><span class="s2">,</span><span class="s1">y</span><span class="s2">,</span><span class="s1">gp</span><span class="s2">.</span><span class="s1">tileSize</span><span class="s2">,</span><span class="s1">gp</span><span class="s2">.</span><span class="s1">tileSize</span><span class="s2">,</span><span class="s0">null</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
